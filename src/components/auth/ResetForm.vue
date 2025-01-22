@@ -55,9 +55,9 @@ watch(passwordResetMutation.isSuccess, () => {
 const emailRules = ref([(v: string) => !!v || 'E-mail is required', (v: string) => /.+@.+\..+/.test(v) || 'E-mail must be valid']);
 </script>
 <template>
-    <form @submit.prevent="onResetPassowrdSubmit" class="mt-sm-13 mt-8">
-        <v-label class="text-subtitle-1 font-weight-semibold pb-2 text-lightText heading" placeholder="info@example.com"
-            >Dirección de email</v-label
+    <form @submit.prevent="onResetPassowrdSubmit" class="mt-8 mt-sm-13">
+        <v-label class="pb-2 text-subtitle-1 font-weight-semibold text-lightText heading" placeholder="info@example.com"
+            >Email address</v-label
         >
         <VTextField
             placeholder="example@tygor.com"
@@ -65,7 +65,7 @@ const emailRules = ref([(v: string) => !!v || 'E-mail is required', (v: string) 
             :error-messages="validator.email.$errors.map((x) => x.$message.toString())"
         />
         <v-btn type="submit" size="large" color="lightprimary" flat block :loading="passwordResetMutation.isPending.value"
-            >Recuperar contraseña</v-btn
+            >Recovery password</v-btn
         >
     </form>
 </template>

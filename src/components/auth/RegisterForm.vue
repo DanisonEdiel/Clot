@@ -22,13 +22,13 @@ const request = ref<CreateAccountRequest>({} as CreateAccountRequest);
 const ruc = ref<Ruc>({} as Ruc);
 
 const accountRules = {
-    name: { required: helpers.withMessage('El nombre es requerido', required) },
-    phone: { required: helpers.withMessage('El teléfono es requerido', required), numeric: helpers.withMessage('Solo se permiten números', required) },
+    name: { required: helpers.withMessage('Name is required', required) },
+    phone: { required: helpers.withMessage('Phone is required', required), numeric: helpers.withMessage('Solo se permiten números', required) },
     email: {
-        required: helpers.withMessage('El email es requerido', required),
-        email: helpers.withMessage('Ingrese un email válido', email)
+        required: helpers.withMessage('The email is required', required),
+        email: helpers.withMessage('Type a valid email', email)
     },
-    password: { required: helpers.withMessage('La contraseña es requerida', required) }
+    password: { required: helpers.withMessage('Password is required', required) }
 };
 
 const rucRules = {
@@ -56,7 +56,7 @@ const onRucSubmit = () => {
 
 watch(createAccountMutation.isError, () => {
     if (createAccountMutation.isError.value) {
-        let errorMessage = 'Error al crear la cuenta';
+        let errorMessage = 'Error to create account';
         let error = createAccountMutation.error.value as AxiosError<{
             message: string;
         }>;
@@ -113,19 +113,19 @@ watch(showFormDialog, () => {
 
 <template>
     <form action="" @submit.prevent="onAccountCreatedSubmit">
-        <v-label class="pb-1 text-primary font-weight-medium">Nombre</v-label>
+        <v-label class="pb-1 text-primary font-weight-medium">Name</v-label>
         <VTextField
-            placeholder="Ingresa tu nombre"
+            placeholder="Type name"
             v-model="request.name"
             :error-messages="accountValidator.name.$errors.map((x) => x.$message.toString())"
         ></VTextField>
         <v-label class="pb-1 text-primary font-weight-medium">Email</v-label>
         <VTextField
-            placeholder="example@tygor.com"
+            placeholder="example@clot.com"
             v-model="request.email"
             :error-messages="accountValidator.email.$errors.map((x) => x.$message.toString())"
         ></VTextField>
-        <v-label class="pb-1 text-primary font-weight-medium">Contraseña</v-label>
+        <v-label class="pb-1 text-primary font-weight-medium">Password</v-label>
         <VTextField
         variant="outlined"
         type="password"
@@ -134,14 +134,14 @@ watch(showFormDialog, () => {
         :error-messages="accountValidator.password.$errors.map((x) => x.$message.toString())"
         v-model="request.password"
         ></VTextField>
-        <v-label class="pb-1 text-primary font-weight-medium">Teléfono</v-label>
+        <v-label class="pb-1 text-primary font-weight-medium">Phone</v-label>
         <VTextField
             placeholder="099-123-4567"
             v-model="request.phone"
             :error-messages="accountValidator.phone.$errors.map((x) => x.$message.toString())"
         ></VTextField>
         <v-btn size="large" class="mt-2" color="primary" block type="submit" flat :loading="createAccountMutation.isPending.value"
-            >Regístrate</v-btn
+            >Register</v-btn
         >
     </form>
     <v-dialog max-width="700" v-model="showFormDialog">

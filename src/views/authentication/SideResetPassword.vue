@@ -7,10 +7,9 @@ import LogoIcon from '@/layouts/full/logo/LogoIcon.vue';
 
 <template>
     <div>
-        <h2 class="text-h3 text-primary semibold heading">¿Perdiste tu contraseña?</h2>
-        <div class="my-4 text-textSecondary">Ingresa la dirección de correo electrónico asociada con su cuenta y
-        le enviaremos un enlace por correo electrónico para restablecer su contraseña</div> 
+        <h2 class="text-h3 text-primary semibold heading">Lost your password?</h2>
+        <div class="my-4 text-textSecondary">Enter the email address associated with your account and we'll email you a link to reset your password.</div> 
         <ResetForm />
-        <v-btn size="large" color="info" class="mt-5 text-secondary" to="/auth/login" block  submit flat><Ri:a>Regresar al login</Ri:a></v-btn>
+        <v-btn size="large" color="info" class="mt-5 text-secondary" to="/auth/login" block  submit flat><Ri:a>Return to login</Ri:a></v-btn>
     </div>
 </template>
