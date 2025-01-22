@@ -1,5 +1,5 @@
 {
-    "name": "matdash",
+    "name": "clot",
     "version": "1.0.0",
     "scripts": {
         "dev": "vite",
