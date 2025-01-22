@@ -84,11 +84,3 @@ The output files will be in the `dist` directory.
 - **`npm run typecheck`**: Runs TypeScript type checking.
 - **`npm run lint`**: Runs ESLint to check and fix formatting issues.
 
-## 🛡️ License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-Explore, contribute, and enjoy creating with **MatDash**! 🎉
-
