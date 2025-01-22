@@ -14,12 +14,11 @@ const { mdAndUp } = useDisplay();
             <span
                 class="tw-bg-[#35648a] tw-gap-2 tw-text-white tw-text-xs sm:tw-text-sm lg:tw-text-base tw-px-2 tw-py-1 tw-rounded-lg">
                 <Icon icon="lucide:circle-check-big" height="18" class="tw-inline" />
-                ¡Bienvenido a Tygor 🙌!
+                ¡Welcome to Clot 🙌!
             </span>
             <div class="pt-6 mt-7 tw-mr-36">
-                <h3 class="mb-2 text-white text-h2">Hola, {{ store.user.name }}</h3>
-                <p class="mb-1 text-white opacity-80 text-subtitle-1">No puedes alcanzar un nuevo destino si no
-                    dejas atrás.</p>
+                <h3 class="mb-2 text-white text-h2">Hello {{ store.user.name }}!</h3>
+                <p class="mb-1 text-white opacity-80 text-subtitle-1"></p>
             </div>
             <img :src="girl" v-if="mdAndUp" alt="home"
                 class="tw-absolute tw-bottom-0 tw-right-0 tw-h-48 sm:tw-h-48 md:tw-h-52 lg:tw-h-56 xl:tw-h-60" />

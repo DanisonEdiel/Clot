@@ -25,25 +25,25 @@ const sidebarItem: menu[] = [
                 to: 'home'
             },
             {
-                title: 'RUC',
+                title: 'Product list',
                 icon: 'user-id-bold',
                 to: 'ruc-list'
             },
+            // {
+            //     title: 'Usuarios',
+            //     icon: 'users-group-rounded-bold',
+            //     to: 'users-list',
+            // },
             {
-                title: 'Usuarios',
-                icon: 'users-group-rounded-bold',
-                to: 'users-list',
-            },
-            {
-                title: 'Mi Cuenta',
+                title: 'My account',
                 icon: 'user-circle-bold',
                 to: 'my-account',
             },
-            {
-                title: 'Subscripción',
-                icon: 'hand-money-outline',
-                to: 'my-subscription',
-            }
+            // {
+            //     title: 'Subscripción',
+            //     icon: 'hand-money-outline',
+            //     to: 'my-subscription',
+            // }
         ]
     },
 ];
