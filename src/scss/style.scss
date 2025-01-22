@@ -1,0 +1,62 @@
+@import './variables';
+@import 'vuetify/styles.scss';
+@import './override';
+@import './transitions';
+@import './layout/text';
+@import './layout/reboot';
+@import './layout/container';
+@import './layout/sidebar';
+@import './layout/rtl';
+@import './layout/topbar';
+@import './layout/horizontal';
+@import './layout/dark';
+@import './layout/customizer';
+
+@import './components/VBreadcrumb';
+@import './components/VAlert';
+@import './components/VButtons';
+@import './components/VCard';
+@import './components/VCarousel';
+@import './components/VField';
+@import './components/VList';
+@import './components/VInput';
+@import './components/VNavigationDrawer';
+@import './components/VShadow';
+@import './components/VSwitch';
+@import './components/VSelectionControl';
+@import './components/VTextField';
+@import './components/VTextarea';
+@import './components/VTabs';
+@import './components/VTable';
+@import './components/VExpansionpanel';
+@import './components/VChip';
+@import './components/VTooltip';
+@import './components/VDatatables';
+@import './components/VLabs';
+@import './components/VStepper';
+@import './components/VPagination';
+
+/*Landing page css*/
+@import 'landingpage/header';
+@import 'landingpage/general';
+@import 'pages/auth';
+@import 'pages/dashboards';
+@import 'pages/apps';
+@import 'pages/editor';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css';
+
+.v-skeleton-loader .v-skeleton-loader__avatar,
+.v-skeleton-loader .v-skeleton-loader__button,
+.v-skeleton-loader .v-skeleton-loader__chip,
+.v-skeleton-loader .v-skeleton-loader__divider,
+.v-skeleton-loader .v-skeleton-loader__heading,
+.v-skeleton-loader .v-skeleton-loader__image,
+.v-skeleton-loader .v-skeleton-loader__ossein,
+.v-skeleton-loader .v-skeleton-loader__text {
+    background: rgba(var(--v-theme-on-surface), 0.2) !important;
+}

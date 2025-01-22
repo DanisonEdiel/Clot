@@ -1,0 +1,14 @@
+//
+// global
+
+.v-btn-group .v-btn {
+    height: inherit !important;
+}
+
+.v-btn-group {
+    border-color: rgb(var(--v-theme-borderColor)) !important;
+}
+
+.v-btn--size-large{
+    font-size: 14px;
+}
