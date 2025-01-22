@@ -4,17 +4,17 @@ import LoginForm from '@/components/auth/LoginForm.vue';
 
 <template>
     <div>
-        <h2 class="text-h3 my-3 heading">Iniciar Sesión</h2>
-        <h3 class="heading mb-6">Tu Dashboard administrativo</h3>
+        <h2 class="my-3 text-h3 heading">Login</h2>
+        <h3 class="mb-6 heading">Your favorite Site</h3>
         <LoginForm />
-        <p class="d-flex align-center justify-center text-textSecondary mt-6 font-weight-medium">
-            ¿Nuevo en Tygor?
+        <p class="justify-center mt-6 d-flex align-center text-textSecondary font-weight-medium">
+            ¿New in Clot?
             <RouterLink
-                class="pl-0 text-primary opacity-1 pl-2 font-weight-medium text-decoration-none"
+                class="pl-0 pl-2 text-primary opacity-1 font-weight-medium text-decoration-none"
                 height="auto"
                 to="/auth/register"
                 variant="plain"
-                >Crea una cuenta</RouterLink
+                >Create an account!</RouterLink
             >
         </p>
     </div>

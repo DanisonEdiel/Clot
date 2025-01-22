@@ -38,7 +38,7 @@ const onLoginSubmit = () => {
 
 watch(postLoginMutation.isError, () => {
     if (postLoginMutation.isError.value) {
-        let message = 'Ha ocurrido un error';
+        let message = 'Server error';
         let error = postLoginMutation.error.value as AxiosError<{
             message: string;
         }>;
@@ -60,7 +60,7 @@ watch(postLoginMutation.isSuccess, () => {
             store.setToken(response.token);
             store.setUser(response.user);
             if (response.tenants.length == 0) {
-                toast.info('Usted no se encuentra asociado a ninguna empresa', {
+                toast.info('You aren´t in the system', {
                     autoClose: 3000,
                     closeButton: true
                 });
@@ -92,7 +92,7 @@ const onCompanySelected = () => {
         <v-label class="pb-2 font-weight-semibold text-grey200">Email</v-label>
         <VTextField v-model="loginRequest.email" class="mb-8" required type="email" hide-details="auto"
             :error-messages="validator.email.$errors.map((x) => x.$message.toString())"></VTextField>
-        <v-label class="pb-2 font-weight-semibold text-grey200">Contraseña</v-label>
+        <v-label class="pb-2 font-weight-semibold text-grey200">Password</v-label>
         <VTextField v-model="loginRequest.password" required hide-details="auto"
             :type="showPassword ? 'text' : 'password'" class="pwdInput" :class="companies.length > 0 ? 'mb-6' : ''"
             :error-messages="validator.password.$errors.map((x) => x.$message.toString())">
@@ -102,19 +102,19 @@ const onCompanySelected = () => {
                 </v-icon>
             </template>
         </VTextField>
-        <v-label v-if="companies.length > 0" class="pb-2 font-weight-semibold text-grey200">Empresa</v-label>
+        <v-label v-if="companies.length > 0" class="pb-2 font-weight-semibold text-grey200">Company</v-label>
         <div class="tw-flex tw-gap-1" v-if="companies.length > 0" v-auto-animate>
             <VSelect hide-details="auto" :items="companies" return-object placeholder="Dueño de la empresa"
                 item-title="owner.name" v-model="selectedCompany" />
-            <VBtn color="primary" height="41" @click="onCompanySelected" v-if="selectedCompany">Entrar</VBtn>
+            <VBtn color="primary" height="41" @click="onCompanySelected" v-if="selectedCompany">Entry</VBtn>
         </div>
         <div class="ml-sm-auto">
             <RouterLink to="/auth/reset-password" class="text-primary text-decoration-none font-weight-medium">
-                ¿Perdiste la contraseña?</RouterLink>
+                Do you miss your password?</RouterLink>
         </div>
         <v-btn size="large" color="primary" class="mt-9" :loading="postLoginMutation.isPending.value" block
             type="submit" flat>
-            Iniciar Sesión
+            Login
         </v-btn>
     </form>
 </template>

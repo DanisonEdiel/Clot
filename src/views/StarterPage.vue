@@ -30,12 +30,12 @@ const testTour = () => {
                     <WelcomeCard />
                 </v-col>
                 <v-col id="subscription-card" cols="12" md="3">
-                    <SubscriptionCard :has-error="dashboardHasError" :is-loading="isDashboardLoading"
-                        :transaction="dashboardData?.tenant.transactions" />
+                    <!-- <SubscriptionCard :has-error="dashboardHasError" :is-loading="isDashboardLoading"
+                        :transaction="dashboardData?.tenant.transactions" /> -->
                 </v-col>
                 <v-col id="users-chart" cols="12" md="3">
-                    <UsersChart :has-error="dashboardHasError" :is-loading="isDashboardLoading"
-                        :rucs="dashboardData?.rucs" />
+                    <!-- <UsersChart :has-error="dashboardHasError" :is-loading="isDashboardLoading"
+                        :rucs="dashboardData?.rucs" /> -->
                 </v-col>
             </v-row>
         </v-col>

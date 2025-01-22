@@ -176,7 +176,7 @@ watch(downloadRetentionDocumentMutation.isSuccess, () => {
             </div>
             <v-tabs v-model="tab" bg-color="transparent" height="40" class="mt-3" density="compact">
                 <v-tab density="compact" value="Factura" class="rounded-md font-weight-semibold">
-                    <Icon icon="solar:widget-linear" height="16" class="me-2" />Factura
+                    <Icon icon="solar:widget-linear" height="16" class="me-2" />Product
                 </v-tab>
                 <v-tab density="compact" value="NotaDebito" class="rounded-md font-weight-semibold">
                     <Icon icon="solar:smartphone-line-duotone" height="16" class="me-2" />N. de Débito

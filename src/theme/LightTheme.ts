@@ -8,19 +8,19 @@ const BLUE_THEME: ThemeTypes = {
         'border-opacity': 1
     },
     colors: {
-        primary: '#534695',
-        secondary: '#635BFF',
-        info: '#DDDBFF',
-        success: '#36c76c',
-        warning: '#ffd648',
-        error: '#ff6692',
+        primary: '#1B1B1B', // Negro
+        secondary: '#6A994E', // Verde hoja seca
+        info: '#A7C957', // Verde claro
+        success: '#8FCB9B', // Verde fresco
+        warning: '#E3C567', // Amarillo suave
+        error: '#D64545', // Rojo oscuro
         lightprimary: '#0A2540',
         lightsecondary: '#009CDE',
         lightsuccess: '#ffff',
         lighterror: '#F6B63E',
         lightinfo: '#DAF4FB',
         lightwarning: '#FFF7DA',
-        textPrimary: '#534695',
+        textPrimary: '#0a2540',
         textSecondary: '#7b8893',
         borderColor: '#e0e6eb',
         containerBg: '#ffffff',
