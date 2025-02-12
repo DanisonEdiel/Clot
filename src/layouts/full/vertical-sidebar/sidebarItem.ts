@@ -27,7 +27,7 @@ const sidebarItem: menu[] = [
             {
                 title: 'Product list',
                 icon: 'user-id-bold',
-                to: 'ruc-list'
+                to: 'product-list'
             },
             // {
             //     title: 'Usuarios',

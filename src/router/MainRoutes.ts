@@ -36,6 +36,12 @@ const MainRoutes: RouteRecordRaw[] = [
                 component: () => import('@/views/documents/DocumentsList.vue')
             },
             {
+                name: 'product-list',
+                path: 'product',
+                beforeEnter: [isUserAuthenticated],
+                component: () => import('@/views/products/ProductsList.vue')
+            },
+            {
                 name: 'users-list',
                 path: 'usuarios',
                 beforeEnter: [isUserAuthenticated],

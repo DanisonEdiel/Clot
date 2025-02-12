@@ -33,8 +33,8 @@ const { account, accountHasError, isAccountLoading, idlAccount } = useAccount();
         <v-row v-else>
             <v-col cols="12" md="5">
                 <v-card class="pb-5 tw-mt-3 tw-text-center tw-overflow-hidden" rounded="lg" flat>
-                    <v-card-title class="tw-mb-3 tw-w-full bg-primary"> Información actual </v-card-title>
-                    <v-card-subtitle class="tw-mb-4 tw-w-full"> Perfil de Usuario </v-card-subtitle>
+                    <v-card-title class="tw-mb-3 tw-w-full bg-primary"> Current Information </v-card-title>
+                    <v-card-subtitle class="tw-mb-4 tw-w-full"> User Profile </v-card-subtitle>
                     <VAvatar :image="account.profile_photo_url" :size="150" />
                     <v-card-text>
                         <div class="tw-font-semibold tw-text-lg">{{ idlAccount.name }}</div>

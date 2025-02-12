@@ -87,7 +87,7 @@ watch(createAccountMutation.isSuccess, () => {
                 store.setTenantId(response.tenants[0].id);
                 store.setRole({ id: 1, name: 'Admin', access: '' } as Role);
             }
-            router.push({ name: 'welcome-page' });
+            router.push({ name: 'home' });
         }
     }
 });

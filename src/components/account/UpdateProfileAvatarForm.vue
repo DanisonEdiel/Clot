@@ -80,7 +80,7 @@ watch(updatePhotoMutation.isError, () => {
 
 watch(updatePhotoMutation.isSuccess, () => {
     if (updatePhotoMutation.isSuccess.value) {
-        toast.success('Avatar actualizado 👌', {
+        toast.success('Photo updated 👌', {
             autoClose: 3000,
             closeButton: true
         });
@@ -97,7 +97,7 @@ watch(updatePhotoMutation.isSuccess, () => {
 
 <template>
     <v-card class="pb-5 tw-mt-3 tw-text-center tw-overflow-hidden" rounded="lg" flat>
-        <v-card-title class="tw-mb-3 tw-w-full bg-primary"> Actualizar foto de perfil </v-card-title>
+        <v-card-title class="tw-mb-3 tw-w-full bg-primary"> Update profile photo </v-card-title>
         <v-card-text class="tw-mt-8" v-auto-animate>
             <div class="tw-flex tw-items-center tw-justify-center tw-w-full">
                 <label

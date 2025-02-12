@@ -10,10 +10,9 @@ const router = useRouter();
     <v-card elevation="10" class="overflow-hidden">
         <img src="@/assets/images/products/more_plans.jpeg" v-if="mdAndUp" alt="matdash-image" />
         <v-card-item class="pt-6">
-            <h1 class="text-h5 tw-text-center">¿Conoces nuestro plan ilimitado?</h1>
+            <h1 class="text-h5 tw-text-center">Do you want to manage your products?</h1>
             <p class="my-3 text-15 text-muted">
-                Sabemos que cada vez creces más y más y eso nos alegra tanto, por eso te entregamos nuestra solución sin Límites, si como lo
-                acabas de leer, sin límites, diseñado y preparado para personas como tú
+                Feel free to add your clothes and manage your sales easily and simply
             </p>
             <div class="mt-4 d-flex justify-content-start">
                 <div class="ml-2 d-flex">
@@ -23,7 +22,7 @@ const router = useRouter();
                         @click="router.push({ name: 'my-subscription' })"
                         color="lightprimary"
                     >
-                        >>Obtener oferta
+                        >>Add Product
                     </span>
                 </div>
             </div>
