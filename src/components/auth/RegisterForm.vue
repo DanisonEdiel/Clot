@@ -2,7 +2,6 @@
 import useLogin from '@/composables/login/useLogin';
 import useRucMutations from '@/composables/ruc/useRucMutations';
 import { CreateAccountRequest } from '@/models/Login';
-import { Ruc } from '@/models/Ruc';
 import { Role } from '@/models/Tenant';
 import { userStore } from '@/stores/useStore';
 import useVuelidate from '@vuelidate/core';
@@ -19,7 +18,6 @@ const { saveRucMutations } = useRucMutations();
 const showFormDialog = ref(false);
 const store = userStore();
 const request = ref<CreateAccountRequest>({} as CreateAccountRequest);
-const ruc = ref<Ruc>({} as Ruc);
 
 const accountRules = {
     name: { required: helpers.withMessage('Name is required', required) },
@@ -38,7 +36,6 @@ const rucRules = {
 };
 
 const accountValidator = useVuelidate(accountRules, request);
-const rucValidator = useVuelidate(rucRules, ruc);
 
 const onAccountCreatedSubmit = () => {
     accountValidator.value.$validate();
@@ -48,10 +45,7 @@ const onAccountCreatedSubmit = () => {
 };
 
 const onRucSubmit = () => {
-    rucValidator.value.$validate();
-    if (!rucValidator.value.$error) {
-        saveRucMutations.mutate(ruc.value);
-    }
+
 };
 
 watch(createAccountMutation.isError, () => {
@@ -114,110 +108,19 @@ watch(showFormDialog, () => {
 <template>
     <form action="" @submit.prevent="onAccountCreatedSubmit">
         <v-label class="pb-1 text-primary font-weight-medium">Name</v-label>
-        <VTextField
-            placeholder="Type name"
-            v-model="request.name"
-            :error-messages="accountValidator.name.$errors.map((x) => x.$message.toString())"
-        ></VTextField>
+        <VTextField placeholder="Type name" v-model="request.name"
+            :error-messages="accountValidator.name.$errors.map((x) => x.$message.toString())"></VTextField>
         <v-label class="pb-1 text-primary font-weight-medium">Email</v-label>
-        <VTextField
-            placeholder="example@clot.com"
-            v-model="request.email"
-            :error-messages="accountValidator.email.$errors.map((x) => x.$message.toString())"
-        ></VTextField>
+        <VTextField placeholder="example@clot.com" v-model="request.email"
+            :error-messages="accountValidator.email.$errors.map((x) => x.$message.toString())"></VTextField>
         <v-label class="pb-1 text-primary font-weight-medium">Password</v-label>
-        <VTextField
-        variant="outlined"
-        type="password"
-        color="primary"
-        placeholder="*********"
-        :error-messages="accountValidator.password.$errors.map((x) => x.$message.toString())"
-        v-model="request.password"
-        ></VTextField>
+        <VTextField variant="outlined" type="password" color="primary" placeholder="*********"
+            :error-messages="accountValidator.password.$errors.map((x) => x.$message.toString())"
+            v-model="request.password"></VTextField>
         <v-label class="pb-1 text-primary font-weight-medium">Phone</v-label>
-        <VTextField
-            placeholder="099-123-4567"
-            v-model="request.phone"
-            :error-messages="accountValidator.phone.$errors.map((x) => x.$message.toString())"
-        ></VTextField>
-        <v-btn size="large" class="mt-2" color="primary" block type="submit" flat :loading="createAccountMutation.isPending.value"
-            >Register</v-btn
-        >
+        <VTextField placeholder="099-123-4567" v-model="request.phone"
+            :error-messages="accountValidator.phone.$errors.map((x) => x.$message.toString())"></VTextField>
+        <v-btn size="large" class="mt-2" color="primary" block type="submit" flat
+            :loading="createAccountMutation.isPending.value">Register</v-btn>
     </form>
-    <v-dialog max-width="700" v-model="showFormDialog">
-        <form action="" @submit.prevent="onRucSubmit">
-            <VCard>
-                <VCardTitle class="bg-primary">
-                    <h1>Vamos a crear tu RUC</h1>
-                </VCardTitle>
-                <VCardText>
-                    <VRow>
-                        <VCol cols="0" md="6" v-if="mdAndUp">
-                            <img src="/src/assets/images/usable/ruc_form.png" />
-                        </VCol>
-                        <VCol cols="0" md="6">
-                            <VRow>
-                                <VCol cols="12">
-                                    <p class="tw-text-sm tw-text-gray-400">
-                                        Por favor, ingresa los datos solicitados como tienes tu cuenta en el SRI, nuestros servidores
-                                        cuentan con cifrado de punta a punta para mayor seguridad.
-                                    </p>
-                                </VCol>
-                                <VCol cols="12">
-                                    <div class="tw-flex tw-flex-col tw-gap-1">
-                                        <label for="">Nombre del dueño</label>
-                                        <VTextField
-                                            placeholder="Nombre"
-                                            v-model="ruc.name"
-                                            hide-details="auto"
-                                            :error-messages="rucValidator.name.$errors.map((x) => x.$message.toString())"
-                                        />
-                                    </div>
-                                </VCol>
-                                <VCol cols="12">
-                                    <div class="tw-flex tw-flex-col tw-gap-1">
-                                        <label for="">Número de ruc</label>
-                                        <VTextField
-                                            placeholder="RUC"
-                                            maxlength="13"
-                                            v-model="ruc.ruc"
-                                            hide-details="auto"
-                                            :error-messages="rucValidator.ruc.$errors.map((x) => x.$message.toString())"
-                                        />
-                                    </div>
-                                </VCol>
-                                <VCol cols="12">
-                                    <div class="tw-flex tw-flex-col tw-gap-1">
-                                        <label for="">Contraseña del ruc</label>
-                                        <VTextField
-                                            placeholder="Contraseña"
-                                            v-model="ruc.password"
-                                            hide-details="auto"
-                                            :error-messages="rucValidator.password.$errors.map((x) => x.$message.toString())"
-                                        />
-                                    </div>
-                                </VCol>
-                            </VRow>
-                        </VCol>
-                    </VRow>
-                </VCardText>
-                <VCardActions>
-                    <div class="tw-flex tw-w-full tw-justify-end tw-gap-2">
-                        <VBtn
-                            flat
-                            color="borderColor"
-                            variant="elevated"
-                            @click="showFormDialog = false"
-                            :loading="saveRucMutations.isPending.value"
-                        >
-                            Cancelar
-                        </VBtn>
-                        <VBtn color="primary" variant="elevated" type="submit" :loading="saveRucMutations.isPending.value"
-                            >Guardar Ruc</VBtn
-                        >
-                    </div>
-                </VCardActions>
-            </VCard>
-        </form>
-    </v-dialog>
 </template>
