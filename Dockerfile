@@ -4,6 +4,7 @@ WORKDIR /app
 
 # Copia los archivos del proyecto
 COPY package.json package-lock.json ./
+RUN npm config set legacy-peer-deps true
 RUN npm install
 
 COPY . .
