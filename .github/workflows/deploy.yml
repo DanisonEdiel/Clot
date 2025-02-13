@@ -31,5 +31,19 @@ jobs:
 
             # Crear el archivo .env con la IP del backend
             echo "VITE_API_URI=\"http://$BACKEND_HOST/api\"" > /home/ec2-user/vue-app/.env
+            
+            # Moverse al proyecto
+            cd /home/ec2-user/vue-app
+            
+            # Eliminar contenedor y build anterior si existen
+            docker stop clot_front || true
+            docker rm clot_front || true
+            docker rmi clot_front || true
+
+            # Construir la imagen Docker
+            docker build -t clot_front .
+
+            # Ejecutar el contenedor en el puerto 80
+            docker run -d -p 80:80 --name clot_front clot_front
           EOF
           rm -f private_key.pem
