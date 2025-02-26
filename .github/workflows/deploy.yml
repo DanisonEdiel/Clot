@@ -34,6 +34,7 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           source: "dist/*"
           target: "/var/www/html"
+          debug: true
 
       - name: 🔄 Reiniciar Nginx
         uses: appleboy/ssh-action@master
