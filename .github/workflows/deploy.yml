@@ -1,4 +1,4 @@
-name: 🚀 Deploy Vue to EC2
+name: Deploy Vue App to AWS EC2
 
 on:
   push:
@@ -10,40 +10,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📂 Clone repo in GitHub Actions
-        uses: actions/checkout@v3
+      - name: 🚀 Clonar el repositorio
+        uses: actions/checkout@v4
 
-      - name: 📦 Install dependencies and build the project
+      - name: 🔧 Instalar Node.js y dependencias
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: 🛠 Configurar Variables de Entorno
+        run: |
+          echo "VITE_BACKEND_URL=${{ secrets.BACKEND_HOST }}" > .env
+
+      - name: 📦 Instalar dependencias y generar `dist/`
         run: |
           npm install
           npm run build
 
-      - name: 🔄 Conectarse a EC2, clonar código y copiar archivos
-        env:
-          EC2_HOST: ${{ secrets.EC2_HOST }}
-          BACKEND_HOST: ${{ secrets.BACKEND_HOST }}
-          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
-        run: |
-          echo "$SSH_PRIVATE_KEY" > private_key.pem
-          chmod 600 private_key.pem
+      - name: 📂 Subir archivos a EC2
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "dist/*"
+          target: "/var/www/html"
 
-          scp -o StrictHostKeyChecking=no -i private_key.pem -r dist ec2-user@$EC2_HOST:/home/ec2-user/vue-app
-
-          ssh -o StrictHostKeyChecking=no -i private_key.pem ec2-user@$EC2_HOST << EOF
-            cd /home/ec2-user/vue-app
-
-            # Crear el .env con la IP del backend
-            echo "VITE_API_URI=\"http://$BACKEND_HOST/api\"" > .env
-
-            # Si ya hay un contenedor corriendo, detenerlo y eliminarlo
-            docker stop clot_front || true
-            docker rm clot_front || true
-
-            # Construir la imagen con los archivos ya compilados
-            docker build -t clot_front .
-
-            # Ejecutar el contenedor con el frontend
-            docker run -d -p 80:80 clot_front
-          EOF
-
-          rm -f private_key.pem
+      - name: 🔄 Reiniciar Nginx
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            sudo systemctl restart nginx
