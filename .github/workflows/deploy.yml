@@ -1,41 +1,45 @@
-name: Deploy Vue App to AWS EC2
+name: Deploy Vue App to EC2
 
 on:
   push:
     branches:
-      - main  # Cambia esto si usas otra rama
+      - main  # O la rama que uses para producción
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🚀 Clonar el repositorio
-        uses: actions/checkout@v4
+    - name: Checkout repo
+      uses: actions/checkout@v3
 
-      - name: 🔧 Instalar Node.js y dependencias
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          
-      - run: npm install
-      - run: npm run build
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
 
-      - name: 📂 Subir archivos a EC2
-        uses: appleboy/scp-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "dist/*"
-          target: "/var/www/html"
+    - name: Install dependencies
+      run: npm install
 
-          
-      - name: 🔄 Reiniciar Nginx
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            sudo systemctl restart nginx
+    - name: Build Vue App with Backend IP
+      run: |
+        echo "VITE_BACKEND_HOST=${{ secrets.BACKEND_HOST }}" > .env
+        npm run build
+
+    - name: Deploy to EC2
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_KEY }}
+        source: "dist/*"
+        target: "/home/ubuntu/vueapp/dist"
+
+    - name: Restart Nginx
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ubuntu
+        key: ${{ secrets.EC2_SSH_KEY }}
+        script: |
+          sudo systemctl restart nginx
