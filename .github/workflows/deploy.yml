@@ -3,7 +3,7 @@ name: Deploy Vue App to EC2
 on:
   push:
     branches:
-      - main  # O la rama que uses para producción
+      - main
 
 jobs:
   deploy:
