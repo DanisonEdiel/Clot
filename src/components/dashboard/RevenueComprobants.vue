@@ -167,7 +167,7 @@ watch(downloadRetentionDocumentMutation.isSuccess, () => {
         <v-card-item class="pb-4">
             <div class="gap-3 d-flex align-center justify-space-between">
                 <v-card-title>
-                    <h1 class="text-h5">Últimos comprobantes</h1>
+                    <h1 class="text-h5">Last Products</h1>
                 </v-card-title>
                 <div>
                     <!-- <VSelect v-model="invoices" :items="items" variant="outlined" density="compact" hide-details>
